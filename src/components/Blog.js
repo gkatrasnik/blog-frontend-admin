@@ -1,7 +1,13 @@
+import AddPost from "./AddPost";
 import PostsList from "./PostsList";
 
 function Blog() {
-  return <PostsList />;
+  return (
+    <>
+      <AddPost />
+      <PostsList />
+    </>
+  );
 }
 
 export default Blog;

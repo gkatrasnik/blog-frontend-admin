@@ -44,14 +44,28 @@ function Post(props) {
       .then((json) => console.log(json));
   };
 
+  const handlePostDelete = () => {
+    //handle post delete
+  };
+
+  const handleCommentDelete = () => {
+    //handle post delete
+  };
+
   return (
     <Card style={{ width: "80%", maxWidth: "32rem", margin: "20px" }}>
       <Card.Body>
-        <Card.Title className="text-center">{props.item.title}</Card.Title>
+        <Card.Title className="text-center">
+          {props.item.title}{" "}
+          <Button onClick={handlePostDelete} className="float-end">
+            Delete Post
+          </Button>
+        </Card.Title>
         <Card.Subtitle className="mb-2 text-muted">
           Author: {props.item.user.username}
         </Card.Subtitle>
         <Card.Text>{props.item.content}</Card.Text>
+
         <br />
         <Card.Text>Comments:</Card.Text>
 
@@ -60,6 +74,9 @@ function Post(props) {
             <Card.Text comment={comment} key={index}>
               {comment.author}: {comment.title}
               {comment.content}
+              <Button onClick={handleCommentDelete} className="float-end">
+                Delete Comment
+              </Button>
             </Card.Text>
           );
         })}
