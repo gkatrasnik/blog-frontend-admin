@@ -8,7 +8,7 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
   //dummy user, use api jwt token
-  const [currentUser, setCurrentUser] = useState("dummy");
+  const [currentUser, setCurrentUser] = useState("gasper");
 
   const value = {
     currentUser,

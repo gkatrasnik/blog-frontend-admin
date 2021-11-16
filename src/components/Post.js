@@ -22,9 +22,6 @@ function Post(props) {
     var postId = props.item._id;
 
     var url = `http://localhost:4000/api/posts/${postId}/comments`;
-
-    console.log("url", url);
-
     fetch(url, {
       // Adding method type
       method: "POST",
