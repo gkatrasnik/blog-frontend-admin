@@ -14,5 +14,9 @@ export function AuthProvider({ children }) {
     currentUser,
   };
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={value} setCurrentUser={setCurrentUser}>
+      {children}
+    </AuthContext.Provider>
+  );
 }

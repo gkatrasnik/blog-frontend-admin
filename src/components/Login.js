@@ -29,7 +29,7 @@ function Login() {
       .then((response) => response.json())
 
       // Displaying results to console
-      .then((json) => console.log(json));
+      .then((json) => console.log(json.user.username));
   };
 
   return (
