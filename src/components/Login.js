@@ -1,35 +1,35 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Form, Button } from "react-bootstrap";
+import { UserContext } from "../contexts/UserContext";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [currentUsername, setCurrentUsername] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
+  const { user, login } = useContext(UserContext);
+  const navigate = useNavigate();
 
-  const loginHandler = () => {
-    var data = {
-      username: currentUsername,
-      password: currentPassword,
-    };
-
-    var url = `http://localhost:4000/api/users/login`;
-    fetch(url, {
-      // Adding method type
-      method: "POST",
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-        "Access-Control-Origin": "*",
-      },
-      mode: "cors",
-      // Adding body or contents to send
-      body: JSON.stringify(data),
-
-      // Adding headers to the request
-    })
-      // Converting to JSON
-      .then((response) => response.json())
-
-      // Displaying results to console
-      .then((json) => console.log(json.user.username));
+  const loginHandler = (event) => {
+    event.preventDefault();
+    axios
+      .post(`/api/users/login`, {
+        username: currentUsername,
+        password: currentPassword,
+      })
+      .then(
+        (response) => {
+          console.log(response);
+          login(response.data.user);
+          localStorage.setItem("token", response.data.token);
+          console.log(response.data.user, response.data.token);
+          navigate("/");
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   };
 
   return (

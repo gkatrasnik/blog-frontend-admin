@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import AddPost from "./AddPost";
 import Post from "./Post";
 import axios from "axios";
 
@@ -25,6 +26,7 @@ function PostsList(props) {
 
   return (
     <>
+      <AddPost getPostsData={getPostsData} />
       {loading && (
         <h2 style={{ textAlign: "center", marginTop: "20px" }}>
           "Loading Posts..."
@@ -37,7 +39,7 @@ function PostsList(props) {
               key={index}
               className="d-flex flex-direction-column justify-content-center"
             >
-              <Post item={item} index={index} />
+              <Post getPostsData={getPostsData} item={item} index={index} />
             </li>
           );
         })}

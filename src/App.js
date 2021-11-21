@@ -4,7 +4,7 @@ import Blog from "./components/Blog";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import PrivateRoute from "./components/PrivateRoute";
-import { AuthProvider } from "./contexts/AuthContext";
+import { UserProvider } from "./contexts/UserContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "react-bootstrap";
 
@@ -13,7 +13,7 @@ import "./App.css";
 function App() {
   return (
     <BrowserRouter>
-      <AuthProvider>
+      <UserProvider>
         <Navigation />
         <Container>
           <Routes>
@@ -26,7 +26,7 @@ function App() {
             <Route to="/" />
           </Routes>
         </Container>
-      </AuthProvider>
+      </UserProvider>
     </BrowserRouter>
   );
 }

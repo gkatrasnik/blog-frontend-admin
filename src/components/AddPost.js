@@ -1,27 +1,40 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Form, Button } from "react-bootstrap";
+import { UserContext } from "../contexts/UserContext";
 import axios from "axios";
 
-function AddPost() {
+function AddPost(props) {
   const [postTitle, setPostTitle] = useState("");
   const [postContent, setPostContent] = useState("");
+  const { user } = useContext(UserContext);
 
   const handlePostAdd = (event) => {
     event.preventDefault();
+
     if (!postTitle || !postContent) {
       alert("Title or content can not be empty!");
       return;
     }
+
+    const token = localStorage.getItem("token");
+
     axios
-      .post(`/api/posts/`, {
-        title: postTitle,
-        content: postContent,
-      })
+      .post(
+        `/api/posts/`,
+        {
+          title: postTitle,
+          content: postContent,
+          userId: user._id,
+        },
+        {
+          headers: { Authorization: "Bearer " + token },
+        }
+      )
       .then(
         (response) => {
           setPostTitle("");
           setPostContent("");
-          console.log(response);
+          props.getPostsData();
         },
         (error) => {
           console.log(error);

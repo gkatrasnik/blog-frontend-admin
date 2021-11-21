@@ -17,7 +17,6 @@ function Post(props) {
       return;
     }
     var postId = props.item._id;
-    //----------------------------------------------------- use axios
     axios
       .post(`/api/posts/${postId}/comments/`, {
         author: commentAuthor,
@@ -40,11 +39,12 @@ function Post(props) {
     event.preventDefault();
     //handle post delete
     var postId = props.item._id;
+    const token = localStorage.getItem("token");
 
     //handle post delete
     axios
       .delete(`/api/posts/${postId}`, {
-        //headers: { Authorization: token },
+        headers: { Authorization: "Bearer " + token },
       })
       .then((res) => {
         console.log(res);
@@ -71,7 +71,13 @@ function Post(props) {
         <Card.Text>Comments:</Card.Text>
 
         {comments.map((comment, index) => {
-          return <Comment comment={comment} key={index} />;
+          return (
+            <Comment
+              getPostsData={props.getPostsData}
+              comment={comment}
+              key={index}
+            />
+          );
         })}
         <Button
           variant="primary"
