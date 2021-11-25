@@ -9,17 +9,17 @@ function Navigation() {
     <Navbar style={{ borderBottom: "1px solid black" }}>
       <Container>
         <Navbar.Brand>
-          <h3>My Blog</h3>
+          <h3>My Blog - Admin App</h3>
         </Navbar.Brand>
       </Container>
       <Nav className="me-auto">
         <Nav.Link>{user.username}</Nav.Link>
 
         {user ? (
-          <Nav.Link onClick={logout}>Log out</Nav.Link>
+          <Nav.Link onClick={logout}>Logout</Nav.Link>
         ) : (
           <>
-            <Nav.Link href="login">Log in</Nav.Link>
+            <Nav.Link href="login">Login</Nav.Link>
             <Nav.Link href="signup">Sign up</Nav.Link>
           </>
         )}

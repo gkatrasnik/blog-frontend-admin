@@ -42,7 +42,10 @@ function AddPost(props) {
       );
   };
   return (
-    <Form onSubmit={handlePostAdd}>
+    <Form
+      onSubmit={handlePostAdd}
+      style={{ width: "80%", maxWidth: "32rem", margin: "auto" }}
+    >
       <h1>New Post</h1>
       <Form.Group className="mb-3" controlId="title">
         <Form.Label>Title</Form.Label>
@@ -65,7 +68,7 @@ function AddPost(props) {
       </Form.Group>
 
       <Button variant="primary" type="submit">
-        Submit
+        Add Post
       </Button>
     </Form>
   );

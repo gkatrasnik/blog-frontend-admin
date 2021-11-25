@@ -33,7 +33,10 @@ function Login() {
   };
 
   return (
-    <Form onSubmit={loginHandler}>
+    <Form
+      onSubmit={loginHandler}
+      style={{ width: "80%", maxWidth: "32rem", margin: "auto" }}
+    >
       <Form.Group className="mb-3" controlId="username">
         <Form.Label>Username</Form.Label>
         <Form.Control

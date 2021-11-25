@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Card, Button, Form } from "react-bootstrap";
 import Comment from "./Comment";
 import axios from "axios";
+import { TrashFill } from "react-bootstrap-icons";
 
 function Post(props) {
   const [showCommentForm, setShowCommentForm] = useState(false);
@@ -9,6 +10,7 @@ function Post(props) {
   const [commentContent, setCommentContent] = useState("");
 
   let comments = props.item.comments;
+  console.log(comments);
 
   const handleCommentAdd = (event) => {
     event.preventDefault();
@@ -41,7 +43,7 @@ function Post(props) {
     var postId = props.item._id;
     const token = localStorage.getItem("token");
 
-    //handle post delete
+    //handle post delete (it deletes its comments too)
     axios
       .delete(`/api/posts/${postId}`, {
         headers: { Authorization: "Bearer " + token },
@@ -58,8 +60,12 @@ function Post(props) {
       <Card.Body>
         <Card.Title className="text-center">
           {props.item.title}{" "}
-          <Button onClick={handlePostDelete} className="float-end">
-            Delete Post
+          <Button
+            variant="danger"
+            onClick={handlePostDelete}
+            className="float-end"
+          >
+            <TrashFill /> Delete post
           </Button>
         </Card.Title>
         <Card.Subtitle className="mb-2 text-muted">
@@ -91,7 +97,7 @@ function Post(props) {
         {showCommentForm && (
           <Form onSubmit={handleCommentAdd}>
             <Form.Group className="mb-3" controlId="author">
-              <Form.Label>Author</Form.Label>
+              <Form.Label>Author:</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="enter your nickname"
@@ -102,7 +108,7 @@ function Post(props) {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="content">
-              <Form.Label>Text</Form.Label>
+              <Form.Label>Text:</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Type your comment"

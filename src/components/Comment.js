@@ -1,8 +1,11 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
 import axios from "axios";
+import { Trash, TrashFill } from "react-bootstrap-icons";
 
 function Comment(props) {
+  console.log(props.comment.author);
+
   const handleCommentDelete = (event) => {
     event.preventDefault();
 
@@ -24,8 +27,12 @@ function Comment(props) {
     <Card.Text comment={props.comment}>
       {props.comment.author}: {props.comment.title}
       {props.comment.content}
-      <Button onClick={handleCommentDelete} className="float-end">
-        Delete Comment
+      <Button
+        variant="danger"
+        onClick={handleCommentDelete}
+        className="float-end"
+      >
+        <Trash /> Delete domment
       </Button>
     </Card.Text>
   );
