@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import Blog from "./components/Blog";
 import Login from "./components/Login";
@@ -12,7 +12,7 @@ import "./App.css";
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <UserProvider>
         <Navigation />
         <Container>
@@ -27,7 +27,7 @@ function App() {
           </Routes>
         </Container>
       </UserProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
